@@ -16,7 +16,7 @@
                 <h2 class="display-5 fw-bold mb-3">
                     <span class="logo-gradient">Welcome to</span>
                     <br>
-                    <span class="text-white">{{ settings('site_name', 'Paycardo Shop') }}</span>
+                    <span class="text-white">{{ settings('site_name', 'TopUp Hut') }}</span>
                 </h2>
                 <p class="text-muted-custom mb-4">{{ settings('site_tagline', 'Your Trusted Online Store') }}. Get instant delivery for gaming credits, social media services, visa cards, and more!</p>
                 <div class="d-flex flex-wrap gap-3 justify-content-center justify-content-lg-start">

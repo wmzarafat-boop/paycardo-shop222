@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', settings('site_name', 'Paycardo Shop')) - {{ settings('site_name', 'Paycardo Shop') }}</title>
+    <title>@yield('title', settings('site_name', 'TopUp Hut')) - {{ settings('site_name', 'TopUp Hut') }}</title>
     <meta name="description" content="@yield('meta_description', settings('site_tagline', 'Your Trusted Online Store'))">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -781,7 +781,7 @@
                         <i class="fas fa-shopping-cart text-2xl text-white"></i>
                     </div>
                     <div>
-                        <h1 class="h5 mb-0 fw-bold logo-gradient">{{ settings('site_name', 'Paycardo Shop') }}</h1>
+                        <h1 class="h5 mb-0 fw-bold logo-gradient">{{ settings('site_name', 'TopUp Hut') }}</h1>
                         <small class="text-muted-custom">{{ settings('site_tagline', 'Trusted Online Store') }}</small>
                     </div>
                 </a>
@@ -935,7 +935,7 @@
                         <div class="w-10 h-10 bg-gradient-to-br from-primary to-orange-600 rounded-xl d-flex align-items-center justify-center">
                             <i class="fas fa-shopping-cart text-lg text-white"></i>
                         </div>
-                        <h3 class="h5 fw-bold text-white mb-0">{{ settings('site_name', 'Paycardo Shop') }}</h3>
+                        <h3 class="h5 fw-bold text-white mb-0">{{ settings('site_name', 'TopUp Hut') }}</h3>
                     </div>
                     <p class="text-muted-custom small mb-3">{{ settings('site_tagline', 'Your Trusted Online Store') }}</p>
                     <div class="d-flex gap-2">
@@ -1017,7 +1017,7 @@
 
             <!-- Copyright -->
             <div class="text-center text-muted-custom small border-top pt-4" style="border-color: rgba(255,255,255,0.05) !important;">
-                <p class="mb-0">&copy; {{ date('Y') }} {{ settings('site_name', 'Paycardo Shop') }}. All rights reserved.</p>
+                <p class="mb-0">&copy; {{ date('Y') }} {{ settings('site_name', 'TopUp Hut') }}. All rights reserved.</p>
             </div>
         </div>
     </footer>

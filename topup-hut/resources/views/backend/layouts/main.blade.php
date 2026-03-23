@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Admin Dashboard') - {{ settings('site_name', 'Paycardo Shop') }}</title>
+    <title>@yield('title', 'Admin Dashboard') - {{ settings('site_name', 'TopUp Hut') }}</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
@@ -108,7 +108,7 @@
 <body>
     <div class="sidebar">
         <div class="logo">
-            <h4><i class="fas fa-shopping-cart"></i> {{ settings('site_name', 'Paycardo Shop') }}</h4>
+            <h4><i class="fas fa-shopping-cart"></i> {{ settings('site_name', 'TopUp Hut') }}</h4>
             <small class="text-muted">Admin Panel</small>
         </div>
         <nav class="nav flex-column">

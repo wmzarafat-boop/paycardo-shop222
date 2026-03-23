@@ -287,8 +287,8 @@ class DatabaseSeeder extends Seeder
     protected function createSettings()
     {
         $settings = [
-            'site_name' => 'Paycardo Shop',
-            'site_tagline' => 'Your Trusted Online Store',
+            'site_name' => 'TopUp Hut',
+            'site_tagline' => 'Fast & Trusted Online Top-Up Store',
             'logo' => 'logo.png',
             'favicon' => 'favicon.ico',
             'currency' => 'BDT',
