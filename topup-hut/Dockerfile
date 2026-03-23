@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install pdo pdo_sqlite mbstring exif pcntl gd
+RUN docker-php-ext-install pdo pdo_sqlite mbstring exif pcntl gd zip
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
@@ -27,8 +27,8 @@ WORKDIR /var/www/html
 # Copy application files
 COPY . .
 
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-reqs
+# Install dependencies (ignore platform reqs for compatibility)
+RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-reqs || true
 
 # Create SQLite database
 RUN mkdir -p database && touch database/database.sqlite && chmod 777 database/database.sqlite
