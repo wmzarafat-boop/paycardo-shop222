@@ -15,6 +15,7 @@ use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\PageController;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Socialite\Facades\Socialite;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
@@ -70,6 +71,34 @@ Route::get('/order/success/{id}', [CheckoutController::class, 'success'])->name(
 Auth::routes();
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/logout', [App\Http\Controllers\Auth\LogoutController::class, 'logout'])->name('logout');
+
+Route::get('/auth/google', function() {
+    return Socialite::driver('google')->redirect();
+});
+
+Route::get('/auth/google/callback', function() {
+    try {
+        $user = Socialite::driver('google')->user();
+        
+        $existingUser = \App\Models\User::where('email', $user->getEmail())->first();
+        
+        if ($existingUser) {
+            Auth::login($existingUser);
+        } else {
+            $newUser = \App\Models\User::create([
+                'name' => $user->getName(),
+                'email' => $user->getEmail(),
+                'password' => bcrypt(str_random(16)),
+                'phone' => '',
+            ]);
+            Auth::login($newUser);
+        }
+        
+        return redirect()->route('account.index')->with('success', 'Logged in successfully!');
+    } catch (\Exception $e) {
+        return redirect()->route('login')->with('error', 'Google login failed. Please try again.');
+    }
+});
 
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');

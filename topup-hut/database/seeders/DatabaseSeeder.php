@@ -17,23 +17,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run()
     {
-        $this->createAdminUser();
         $this->createCategories();
         $this->createProducts();
         $this->createSettings();
         $this->createPages();
-    }
-
-    protected function createAdminUser()
-    {
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@topuphut.com',
-            'password' => Hash::make('password'),
-            'phone' => '01XXXXXXXXX',
-            'role' => 'admin',
-            'status' => true,
-        ]);
     }
 
     protected function createCategories()

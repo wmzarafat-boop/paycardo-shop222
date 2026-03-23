@@ -2,8 +2,14 @@
 @section('title', 'Home')
 @section('content')
 
+<!-- Promo Banner for Mobile -->
+<div class="promo-banner d-lg-none">
+    <h3><i class="fas fa-gift me-2"></i>Special Offer</h3>
+    <p>Get instant delivery on all top-ups!</p>
+</div>
+
 <!-- Hero Section -->
-<section class="hero-gradient py-5">
+<section class="hero-gradient py-5 d-none d-lg-block">
     <div class="container py-4">
         <div class="row align-items-center g-4">
             <div class="col-lg-6 text-center text-lg-start">
@@ -42,27 +48,30 @@
             </h2>
             <a href="{{ route('shop') }}" class="text-primary-custom small">View All <i class="fas fa-arrow-right ms-1"></i></a>
         </div>
-        <div class="row g-4">
+        <div class="product-grid">
             @forelse($featuredProducts as $product)
-            <div class="col-lg-3 col-md-4 col-6">
-                <div class="product-card h-100 position-relative">
+            <div class="product-card-new">
+                <div class="product-card-image">
                     @if($product->sale_price)
-                    <span class="product-discount-badge">-{{ $product->discount_percent }}%</span>
+                    <span class="product-card-discount">-{{ $product->discount_percent }}%</span>
                     @else
-                    <span class="product-hot-badge">HOT</span>
+                    <span class="product-card-badge"><i class="fas fa-bolt me-1"></i> Auto</span>
                     @endif
                     <a href="{{ route('product', $product->slug) }}">
-                        <img src="{{ product_image($product) }}" class="card-img-top" alt="{{ $product->name }}" onerror="this.src='https://via.placeholder.com/400x400/16213e/FF6B00?text={{ urlencode(substr($product->name, 0, 10)) }}'">
+                        <img src="{{ product_image($product) }}" alt="{{ $product->name }}" onerror="this.src='https://via.placeholder.com/400x400/16213e/FF6B00?text={{ urlencode(substr($product->name, 0, 10)) }}'">
                     </a>
-                    <div class="p-3 text-center">
-                        <h6 class="text-white mb-2" style="font-size: 0.9rem; line-height: 1.3;">{{ Str::limit($product->name, 40) }}</h6>
-                        <p class="text-primary-custom fw-bold mb-3" style="font-size: 1.1rem;">
-                            {{ settings('currency_symbol', '৳') }}{{ number_format($product->current_price, 0) }}
-                        </p>
-                        <a href="{{ route('product', $product->slug) }}" class="btn btn-outline-custom w-100 btn-sm">
-                            <i class="fas fa-shopping-cart me-1"></i> View Details
-                        </a>
+                </div>
+                <div class="product-card-content">
+                    <h6 class="product-card-title">{{ Str::limit($product->name, 40) }}</h6>
+                    <div class="product-card-price">
+                        <span class="current-price">{{ settings('currency_symbol', '৳') }}{{ number_format($product->current_price, 0) }}</span>
+                        @if($product->sale_price)
+                        <span class="original-price">{{ settings('currency_symbol', '৳') }}{{ number_format($product->price, 0) }}</span>
+                        @endif
                     </div>
+                    <a href="{{ route('product', $product->slug) }}" class="product-card-btn">
+                        <i class="fas fa-shopping-cart me-2"></i> Buy Now
+                    </a>
                 </div>
             </div>
             @empty

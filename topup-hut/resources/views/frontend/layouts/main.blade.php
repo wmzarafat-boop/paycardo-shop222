@@ -352,6 +352,399 @@
                 font-size: 1.5rem;
             }
         }
+        
+        /* MOBILE-FIRST RESPONSIVE STYLES */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: var(--dark);
+            border-top: 1px solid var(--border-color);
+            padding: 10px 0;
+            z-index: 1000;
+            box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .mobile-nav-items {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .mobile-nav-item {
+            text-align: center;
+            flex: 1;
+        }
+        
+        .mobile-nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s;
+        }
+        
+        .mobile-nav-link i {
+            font-size: 20px;
+        }
+        
+        .mobile-nav-link.active,
+        .mobile-nav-link:hover {
+            color: var(--primary);
+        }
+        
+        .install-popup {
+            display: none;
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 16px 20px;
+            z-index: 999;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+            max-width: 90%;
+            width: 350px;
+            animation: slideUp 0.5s ease;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        
+        .install-popup-content {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .install-popup-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), #ff8c00);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .install-popup-text {
+            flex: 1;
+        }
+        
+        .install-popup-text h6 {
+            color: white;
+            margin: 0 0 4px 0;
+            font-size: 14px;
+        }
+        
+        .install-popup-text p {
+            color: var(--text-secondary);
+            margin: 0;
+            font-size: 12px;
+        }
+        
+        .install-btn {
+            background: linear-gradient(135deg, var(--primary), #ff8c00);
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .install-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(255, 107, 0, 0.4);
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            background: var(--card);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .mobile-header {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(15, 15, 26, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 12px 15px;
+            z-index: 1001;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .mobile-header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .mobile-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .mobile-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), #ff8c00);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+        }
+        
+        .mobile-logo-text {
+            font-size: 16px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .mobile-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .mobile-header-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 20px;
+            cursor: pointer;
+            position: relative;
+        }
+        
+        .promo-banner {
+            background: linear-gradient(135deg, var(--primary) 0%, #ff8c00 50%, #ffaa33 100%);
+            padding: 20px;
+            border-radius: 16px;
+            margin: 15px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 60%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+        
+        .promo-banner h3 {
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            position: relative;
+        }
+        
+        .promo-banner p {
+            color: rgba(255,255,255,0.9);
+            font-size: 14px;
+            margin: 0;
+            position: relative;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 15px;
+        }
+        
+        .product-card-new {
+            background: var(--card);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+        
+        .product-card-new:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(255, 107, 0, 0.2);
+        }
+        
+        .product-card-image {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+        
+        .product-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .product-card-new:hover .product-card-image img {
+            transform: scale(1.1);
+        }
+        
+        .product-card-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: linear-gradient(135deg, var(--primary), #ff8c00);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 600;
+        }
+        
+        .product-card-discount {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ef4444;
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+        }
+        
+        .product-card-content {
+            padding: 12px;
+        }
+        
+        .product-card-title {
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            margin: 0 0 8px 0;
+            line-height: 1.3;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        
+        .product-card-price {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        
+        .current-price {
+            color: var(--primary);
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .original-price {
+            color: var(--text-secondary);
+            font-size: 12px;
+            text-decoration: line-through;
+        }
+        
+        .product-card-btn {
+            width: 100%;
+            background: linear-gradient(135deg, var(--primary), #ff8c00);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .product-card-btn:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(255, 107, 0, 0.4);
+        }
+        
+        @media (max-width: 991px) {
+            .mobile-nav, .mobile-header, .install-popup {
+                display: block;
+            }
+            
+            .topbar, header.navbar-custom, footer, .whatsapp-float {
+                display: none;
+            }
+            
+            body {
+                padding-top: 60px;
+                padding-bottom: 70px;
+            }
+            
+            .promo-banner {
+                margin: 15px;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .product-grid {
+                grid-template-columns: repeat(4, 1fr);
+                gap: 20px;
+                padding: 20px;
+            }
+            
+            .product-card-new {
+                border-radius: 20px;
+            }
+            
+            .product-card-content {
+                padding: 15px;
+            }
+            
+            .product-card-title {
+                font-size: 15px;
+            }
+            
+            .current-price {
+                font-size: 18px;
+            }
+        }
     </style>
     @stack('styles')
 </head>
@@ -629,6 +1022,80 @@
         </div>
     </footer>
 
+    <!-- Mobile Header -->
+    <div class="mobile-header">
+        <div class="mobile-header-content">
+            <div class="mobile-logo">
+                <div class="mobile-logo-icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <span class="mobile-logo-text">{{ settings('site_name', 'TopUp Hut') }}</span>
+            </div>
+            <div class="mobile-header-actions">
+                <button class="mobile-header-btn" onclick="toggleSearch()">
+                    <i class="fas fa-search"></i>
+                </button>
+                <button class="mobile-header-btn" onclick="toggleCart()">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-primary" style="font-size: 10px;">{{ cart_count() }}</span>
+                </button>
+                <a href="{{ route('account.index') }}" class="mobile-header-btn">
+                    <i class="fas fa-user"></i>
+                </a>
+            </div>
+        </div>
+        <div class="mt-3" id="mobileSearch" style="display: none;">
+            <form action="{{ route('shop.search') }}" method="GET">
+                <input type="text" name="q" placeholder="Search products..." class="form-control-custom">
+            </form>
+        </div>
+    </div>
+
+    <!-- Install App Popup -->
+    <div class="install-popup" id="installPopup">
+        <span class="close-popup" onclick="closeInstallPopup()"><i class="fas fa-times"></i></span>
+        <div class="install-popup-content">
+            <div class="install-popup-icon">
+                <i class="fas fa-mobile-alt"></i>
+            </div>
+            <div class="install-popup-text">
+                <h6>Install Our App</h6>
+                <p>Get the best experience</p>
+            </div>
+            <button class="install-btn" onclick="installApp()">Install</button>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation -->
+    <nav class="mobile-nav">
+        <ul class="mobile-nav-items">
+            <li class="mobile-nav-item">
+                <a href="{{ url('/') }}" class="mobile-nav-link {{ request()->is('/') ? 'active' : '' }}">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="{{ route('shop') }}" class="mobile-nav-link {{ request()->is('shop*') ? 'active' : '' }}">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span>TopUp</span>
+                </a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="{{ route('account.index') }}" class="mobile-nav-link">
+                    <i class="fas fa-user"></i>
+                    <span>My Account</span>
+                </a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="{{ route('page', 'contact-us') }}" class="mobile-nav-link">
+                    <i class="fas fa-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
     <!-- WhatsApp Float Button -->
     <a href="https://wa.me/{{ str_replace(['+', '-', ' '], '', settings('phone', '8801850603187')) }}" target="_blank" class="whatsapp-float">
         <i class="fab fa-whatsapp"></i>
@@ -646,35 +1113,37 @@
     <script>toastr.error('{{ session('error') }}', 'Error');</script>
     @endif
     
-    <script>
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobileMenu');
-            if (menu.style.display === 'none' || menu.style.display === '') {
-                menu.style.display = 'block';
-            } else {
-                menu.style.display = 'none';
-            }
+<script>
+        var installPopupDisplayed = false;
+
+        function toggleSearch() {
+            const search = document.getElementById('mobileSearch');
+            search.style.display = search.style.display === 'none' ? 'block' : 'none';
         }
 
-        function toggleCart() {
-            const sidebar = document.getElementById('cartSidebar');
-            const overlay = document.getElementById('cartOverlay');
-            sidebar.classList.toggle('open');
-            overlay.classList.toggle('open');
+        function closeInstallPopup() {
+            document.getElementById('installPopup').style.display = 'none';
+            localStorage.setItem('installPopupShown', 'true');
+            sessionStorage.setItem('installSession', 'true');
         }
 
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                const href = this.getAttribute('href');
-                if (href !== '#') {
-                    e.preventDefault();
-                    const target = document.querySelector(href);
-                    if (target) {
-                        target.scrollIntoView({ behavior: 'smooth' });
-                    }
-                }
-            });
-        });
+        function installApp() {
+            alert('To install: Add to Home Screen from browser menu');
+            localStorage.setItem('installPopupShown', 'true');
+            sessionStorage.setItem('installSession', 'true');
+            document.getElementById('installPopup').style.display = 'none';
+        }
+
+        (function() {
+            if (installPopupDisplayed) return;
+            if (window.innerWidth > 768) return;
+            if (localStorage.getItem('installPopupShown')) return;
+            
+            installPopupDisplayed = true;
+            setTimeout(function() {
+                document.getElementById('installPopup').style.display = 'block';
+            }, 3000);
+        })();
     </script>
     
     @stack('scripts')

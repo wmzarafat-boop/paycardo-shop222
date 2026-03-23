@@ -6,6 +6,8 @@ use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Support\ServiceProvider;
 use League\Flysystem\Filesystem;
 use nao_pon\flysystem\google\GoogleDriveAdapter;
+use Google\Client;
+use Google\Service\Drive;
 
 class GoogleDriveServiceProvider extends ServiceProvider
 {
@@ -17,12 +19,12 @@ class GoogleDriveServiceProvider extends ServiceProvider
     public function boot()
     {
         \Storage::extend('google', function ($app, $config) {
-            $client = new \Google\Client();
+            $client = new Client();
             $client->setClientId($config['clientId']);
             $client->setClientSecret($config['clientSecret']);
             $client->refreshToken($config['refreshToken']);
 
-            $service = new \Google\Service\Drive($client);
+            $service = new Drive($client);
             $adapter = new GoogleDriveAdapter($service, $config['folderId']);
             $filesystem = new Filesystem($adapter);
 

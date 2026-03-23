@@ -10,6 +10,8 @@ use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
+use Google\Client;
+use Google\Service\Drive;
 
 class ProductController extends Controller
 {
@@ -59,9 +61,9 @@ class ProductController extends Controller
             'sale_price' => $request->sale_price,
             'stock' => $request->stock ?? 0,
             'sku' => $request->sku ?? strtoupper(Str::random(8)),
-            'has_variants' => $request->has_variants ?? false,
-            'is_featured' => $request->is_featured ?? false,
-            'is_trending' => $request->is_trending ?? false,
+            'has_variants' => $request->has_variants === '1' || $request->has_variants === 'on',
+            'is_featured' => $request->is_featured === 'on',
+            'is_trending' => $request->is_trending === 'on',
             'status' => $request->status ?? 'draft',
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
@@ -124,9 +126,9 @@ class ProductController extends Controller
             'sale_price' => $request->sale_price,
             'stock' => $request->stock ?? 0,
             'sku' => $request->sku,
-            'has_variants' => $request->has_variants ?? false,
-            'is_featured' => $request->is_featured ?? false,
-            'is_trending' => $request->is_trending ?? false,
+            'has_variants' => $request->has_variants === '1' || $request->has_variants === 'on',
+            'is_featured' => $request->is_featured === 'on',
+            'is_trending' => $request->is_trending === 'on',
             'status' => $request->status ?? 'draft',
             'meta_title' => $request->meta_title,
             'meta_description' => $request->meta_description,
@@ -219,12 +221,12 @@ class ProductController extends Controller
 
     private function getGoogleDriveFileId($path)
     {
-        $client = new \Google\Client();
+        $client = new Client();
         $client->setClientId(config('google-drive.client_id'));
         $client->setClientSecret(config('google-drive.client_secret'));
         $client->refreshToken(config('google-drive.refresh_token'));
         
-        $service = new \Google\Service\Drive($client);
+        $service = new Drive($client);
         $results = $service->files->listFiles([
             'q' => "name='" . basename($path) . "' and '" . config('google-drive.folder_id') . "' in parents",
             'fields' => 'files(id, name)'

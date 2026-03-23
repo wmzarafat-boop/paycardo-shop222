@@ -1,29 +1,43 @@
-FROM php:8.2-apache
+FROM php:8.1-apache
 
-# Install required extensions
-RUN docker-php-ext-install pdo pdo_mysql mysqli
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    libpng-dev \
+    libonig-dev \
+    libxml2-dev \
+    zip \
+    unzip \
+    sqlite3 \
+    libsqlite3-dev \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install PHP extensions
+RUN docker-php-ext-install pdo pdo_sqlite mbstring exif pcntl gd
 
 # Enable Apache mod_rewrite
 RUN a2enmod rewrite
 
-# Install composer
+# Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# Set working directory
 WORKDIR /var/www/html
 
-# Copy composer files first for caching
-COPY composer.json composer.lock* ./
-
-# Install dependencies
-RUN composer install --no-dev --optimize-autoloader --no-interaction
-
-# Copy application
+# Copy application files
 COPY . .
 
+# Install dependencies
+RUN composer install --no-dev --optimize-autoloader --no-interaction --ignore-platform-reqs
+
+# Create SQLite database
+RUN mkdir -p database && touch database/database.sqlite && chmod 777 database/database.sqlite
+
 # Set permissions
-RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache /var/www/html/database
 RUN chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Expose port
+# Expose port 80
 EXPOSE 80
+
+CMD ["apache2-foreground"]

@@ -1,0 +1,10 @@
+database:
+  sqlite:
+    encoding: UTF-8
+
+build:
+  command: |
+    composer install --no-dev --optimize-autoloader
+    touch database/database.sqlite
+    chmod 775 database/database.sqlite
+  publishDir: app
